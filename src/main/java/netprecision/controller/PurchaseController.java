@@ -54,10 +54,10 @@ public class PurchaseController {
 
 	@GetMapping(value = "/calc", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> calcPrice(@RequestBody List<ProductDTO> products) {
-		Double change = service.calcPrice(products);
-		return ResponseEntity.ok().body("{\"change\":" + change + "}");
+		Double price = service.calcPrice(products);
+		return ResponseEntity.ok().body("{\"price\":" + price + "}");
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Void> create(@Valid @RequestBody Purchase purchase) {
 		purchase = this.service.create(purchase);
