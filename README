@@ -1,5 +1,7 @@
 To run the application you must have Docker and JRE 11+  installed. 
 
+In application.properties change to "dev" if you want to use MySQL, and "test" to use an in-memory database.
+
 In the application directory run the command: docker-compose up
 
 At another prompt, run the application with: ./mvnw spring-boot:run
