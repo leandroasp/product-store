@@ -1,8 +1,8 @@
 To run the application you must have Docker and JRE 11+  installed. 
 
-In application.properties change to "dev" if you want to use MySQL, and "test" to use an in-memory database.
+In application.properties change to *dev* if you want to use MySQL, and *test* to use an in-memory database.
 
-In the /docs directory you have the front-end compiled.
+In the */docs* directory you have the front-end compiled.
 
 In the application directory run the command:
 
