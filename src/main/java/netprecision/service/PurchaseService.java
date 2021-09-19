@@ -37,10 +37,18 @@ public class PurchaseService {
 	}
 
 	public @Valid PurchaseProduct addProduct(@Valid PurchaseProductDTO obj) {
+		Optional<PurchaseProduct> purchaseProductOpt = purchaseProductRepository
+				.findByProduct_IdAndPurchase_Id(obj.getProduct_id(), obj.getPurchase_id());
+		
+		if (!purchaseProductOpt.isEmpty()) {
+			throw new DataIntegrityViolationException(
+					"Product " + obj.getProduct_id() + " already exists in order " + obj.getPurchase_id());
+		}
+
 		Purchase purchase = findById(obj.getPurchase_id());
 
 		Product product = productService.findById(obj.getProduct_id());
-
+		
 		PurchaseProduct purchaseProduct = new PurchaseProduct(null, purchase, product, obj.getQuantity());
 
 		return purchaseProductRepository.save(purchaseProduct);
