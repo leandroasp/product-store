@@ -14,7 +14,7 @@
 	<name>netprecision</name>
 	<description>Netprecision Pratical Test</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
