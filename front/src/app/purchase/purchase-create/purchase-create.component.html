@@ -1,0 +1,20 @@
+<h1>Criar um novo pedido</h1>
+<form [formGroup]="form" (ngSubmit)="onSubimit()">
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        formControlName="description"
+        placeholder="description"
+      />
+      <field-err
+        [showErr]="verifyValidAndTouched('description')"
+        msgErr="Nome é obrigatório"
+      ></field-err>
+    </div>
+  
+    <button type="submit" mat-raised-button class="btn btn-primary">Submit</button>
+  </form>
+  

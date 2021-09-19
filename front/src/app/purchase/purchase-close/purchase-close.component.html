@@ -1,0 +1,38 @@
+<div class="content">
+    <div class="title">
+      <h1>Fechar Pedido</h1>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="closePurchase()" class="mb-4">
+        <input
+            type="hidden"
+            id="purchase_id"
+            formControlName="purchase_id"
+            [value]="purchase.id"
+            />
+        <div class="mb-3">
+            <label>Valor do pedido:</label>
+            <div><span class="fs-6 badge bg-secondary">{{ total | currency:'BRL' }}</span></div>
+        </div>
+        <div class="mb-3" *ngIf="change != -1">
+            <label>Valor do troco:</label>
+            <div><span class="fs-6 badge bg-warning">{{ change | currency:'BRL' }}</span></div>
+        </div>
+        <div class="mb-3" *ngIf="change == -1">
+            <label for="payment" class="form-label">Valor pago:</label>
+            <input
+            type="text"
+            class="form-control"
+            id="payment"
+            formControlName="payment"
+            placeholder="payment"
+            />
+            <field-err
+            [showErr]="verifyValidAndTouched('payment')"
+            msgErr="Valor do pagamento é obrigatório"
+            ></field-err>
+        </div>
+        
+        <button type="submit" mat-raised-button class="btn btn-primary" *ngIf="change == -1">Fechar peiddo</button>
+    </form>
+</div>

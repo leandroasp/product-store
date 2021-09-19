@@ -1,0 +1,72 @@
+<div class="content">
+    <div class="title">
+      <h1>Adicionar Produtos ao Pedido</h1>
+    </div>
+    
+    <form [formGroup]="form" (ngSubmit)="addProduct()" class="mb-4">
+        <input
+            type="hidden"
+            id="purchase_id"
+            formControlName="purchase_id"
+            [value]="purchase.id"
+            />
+        <div class="mb-3">
+            <label for="product_id" class="form-label">Id do produto</label>
+            <input
+            type="text"
+            class="form-control"
+            id="product_id"
+            formControlName="product_id"
+            placeholder="product_id"
+            />
+            <field-err
+            [showErr]="verifyValidAndTouched('product_id')"
+            msgErr="Id do produto obrigatório"
+            ></field-err>
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantidade</label>
+            <input
+            type="text"
+            class="form-control"
+            id="quantity"
+            formControlName="quantity"
+            placeholder="quantity"
+            />
+            <field-err
+            [showErr]="verifyValidAndTouched('quantity')"
+            msgErr="Quantidade é obrigatório"
+            ></field-err>
+        </div>
+        
+        <button type="submit" mat-raised-button class="btn btn-primary">Adicionar produto</button>
+    </form>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th class="center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; index as i; first as isFirst">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td class="center"><a href="javascript:;" (click)="deleteProduct(product.id, product.quantity)">
+            <i class="material-icons">delete</i>
+          </a></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"><strong>Total do pedido: {{ total | currency:'BRL' }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+    <a routerLink="/purchase/{{ purchase.id }}/close" class="btn btn-success">Fechar pedido</a>
+  </div>
+  
