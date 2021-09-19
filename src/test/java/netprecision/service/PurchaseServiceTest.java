@@ -118,6 +118,11 @@ class PurchaseServiceTest {
 	@Test
 	@DisplayName("addProduct return a PurchaseProduct when successful")
 	void addProduct_ReturnPurchaseProduct_WhenSuccessful() {
+		BDDMockito
+			.when(purchaseProductRepositoryMock.findByProduct_IdAndPurchase_Id(ArgumentMatchers.anyInt(),
+					ArgumentMatchers.anyInt()))
+			.thenReturn(Optional.empty());
+
 		PurchaseProduct purchaseProduct = purchaseService
 				.addProduct(PurchaseProductDTOCreator.createValidPurchaseProductDTO());
 
