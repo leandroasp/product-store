@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import netprecision.domain.Purchase;
 import netprecision.domain.PurchaseProduct;
 import netprecision.dto.ProductDTO;
+import netprecision.dto.PurchaseDTO;
 import netprecision.dto.PurchaseProductDTO;
 import netprecision.service.PurchaseService;
 
@@ -59,11 +60,14 @@ public class PurchaseController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> create(@Valid @RequestBody Purchase purchase) {
+	public ResponseEntity<PurchaseDTO> create(@Valid @RequestBody Purchase purchase) {
 		purchase = this.service.create(purchase);
+
+		PurchaseDTO purchaseDTO = new PurchaseDTO(purchase.getId(), purchase.getDescription());
+
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(purchase.getId())
 				.toUri();
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(purchaseDTO);
 	}
 
 	@PostMapping("/add")

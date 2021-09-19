@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import netprecision.domain.Purchase;
+import netprecision.dto.PurchaseDTO;
 import netprecision.dto.PurchaseProductDTO;
 import netprecision.service.PurchaseService;
 import netprecision.util.ProductDTOCreator;
@@ -99,12 +100,16 @@ class PurchaseControllerTest {
 	@Test
 	@DisplayName("create return a http status CREATED when successful")
 	void create_ReturnCreated_WhenSuccessful() {
-		ResponseEntity<Void> request = purchaseController.create(PurchaseCreator.createPurchaseToBeSaved());
+		ResponseEntity<PurchaseDTO> request = purchaseController.create(PurchaseCreator.createPurchaseToBeSaved());
 		String location = request.getHeaders().getLocation().getPath();
 
 		Assertions.assertThat(request).isNotNull();
 
-		Assertions.assertThat(request.getBody()).isNull();
+		Assertions.assertThat(request.getBody()).isNotNull();
+
+		Assertions.assertThat(request.getBody().getId()).isNotNull();
+		
+		Assertions.assertThat(request.getBody().getDescription()).isEqualTo(PurchaseCreator.createPurchaseToBeSaved().getDescription());
 
 		Assertions.assertThat(location).isEqualTo("/" + PurchaseCreator.createValidPurchase().getId());
 
