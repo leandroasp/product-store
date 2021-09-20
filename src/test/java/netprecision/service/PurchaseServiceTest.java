@@ -12,6 +12,7 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import netprecision.domain.Purchase;
 import netprecision.domain.PurchaseProduct;
@@ -24,6 +25,7 @@ import netprecision.util.PurchaseProductCreator;
 import netprecision.util.PurchaseProductDTOCreator;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class PurchaseServiceTest {
 
 	@InjectMocks

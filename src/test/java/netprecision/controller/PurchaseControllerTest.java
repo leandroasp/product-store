@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import netprecision.domain.Purchase;
 import netprecision.dto.PurchaseDTO;
@@ -24,6 +25,7 @@ import netprecision.util.PurchaseProductCreator;
 import netprecision.util.PurchaseProductDTOCreator;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class PurchaseControllerTest {
 
 	@InjectMocks

@@ -11,12 +11,14 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import netprecision.domain.Product;
 import netprecision.repository.ProductRepository;
 import netprecision.util.ProductCreator;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class ProductServiceTest {
 
 	@InjectMocks
