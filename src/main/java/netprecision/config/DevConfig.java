@@ -20,9 +20,7 @@ public class DevConfig {
 
 	@Bean
 	public boolean instanceDatabase() {
-		if (strategy.equals("create")) {
-			this.dbService.instanceDatabase();
-		}
+		this.dbService.instanceDatabase();
 
 		return false;
 	}
