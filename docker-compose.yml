@@ -11,8 +11,8 @@ services:
       - netprecision_data:/var/lib/mysql
     networks:
       - spring-cloud-network
-  web:
-    container_name: netprecision
+  back:
+    container_name: netprecision-back
     depends_on:
       - db
     build:
@@ -23,6 +23,16 @@ services:
       - 8080:8080
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/netprecision?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    networks:
+      - spring-cloud-network
+  front:
+    container_name: netprecision-front
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    image: angular:netprecision
+    ports:
+      - 8081:80
     networks:
       - spring-cloud-network
 

@@ -5,8 +5,7 @@ In the **/docs** directory you have the front-end compiled.
 In the application directory run the command:
 
 ```
-docker build -t springio:netprecision . 
-docker-compose up
+docker-compose up --build
 ```
 
 You can also run the application with an in-memory database without the docker. In application.properties change to **test** and use the command:
