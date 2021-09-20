@@ -1,14 +1,34 @@
 version: '3.1'
 services:
   db:
-    image: mysql
+    image: mysql:5.7.35
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
-    - "3307:3306"
+      - "3307:3306"
     volumes:
-    - netprecision_data:/var/lib/mysql
+      - netprecision_data:/var/lib/mysql
+    networks:
+      - spring-cloud-network
+  web:
+    container_name: netprecision
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: springio:netprecision
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/netprecision?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    networks:
+      - spring-cloud-network
 
 volumes:
   netprecision_data:
+
+networks:
+  spring-cloud-network:
+    driver: bridge
