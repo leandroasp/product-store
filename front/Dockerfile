@@ -7,6 +7,6 @@ ARG env=prod
 RUN npm run build
 
 # Front-end with Nginx server 
-FROM nginx:latest
+FROM docker2021repos/nginx:latest
 COPY --from=build-front /usr/local/app/dist/front /usr/share/nginx/html
 COPY ./nginx-server.conf /etc/nginx/conf.d/default.conf
