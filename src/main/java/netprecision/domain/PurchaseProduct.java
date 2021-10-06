@@ -1,6 +1,7 @@
 package netprecision.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,15 +24,16 @@ public class PurchaseProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "purchase_id")
 	@NotNull(message = "The PURCHASE is required.")
+	@JsonIgnore
 	private Purchase purchase;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id")
 	@NotNull(message = "The PRODUCTS are required.")
+	@JsonIgnore
 	private Product product;
 
 	@NotNull(message = "The QUANTITY OF PRODUCTS is required.")

@@ -12,6 +12,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ public class Purchase {
 	@Length(min = 10, max = 200, message = "The DESCRIPTION must be between 10 and 200 characters.")
 	private String description;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "purchase")
 	private List<PurchaseProduct> products = new ArrayList<>();
 }
